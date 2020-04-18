@@ -1,19 +1,17 @@
 //
-//  TodayTaskCell.swift
+//  HistoryTaskCell.swift
 //  FocusOn
 //
-//  Created by Scott Bolin on 4/17/20.
+//  Created by Scott Bolin on 4/18/20.
 //  Copyright © 2020 Scott Bolin. All rights reserved.
 //
 
 import UIKit
 
-class TodayTaskCell: UITableViewCell {
+class HistoryTaskCell: UITableViewCell {
   
-  @IBOutlet weak var countLabel: UIImageView!
-  @IBOutlet weak var checkMarkButton: UIButton!
-  @IBOutlet weak var taskTextField: UITextField!
-  
+  @IBOutlet weak var historyTaskCheckMarkButton: UIButton!
+  @IBOutlet weak var historyTaskTextField: UITextField!
   
   override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +24,4 @@ class TodayTaskCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-  @IBAction func checkmarkTapped(_ sender: UIButton) {
-    
-  }
 }

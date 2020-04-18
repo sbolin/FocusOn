@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Focus" representedClassName=".Focus" syncable="YES">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="goal" attributeType="String"/>
+        <relationship name="todos" optional="YES" toMany="YES" minCount="1" maxCount="3" deletionRule="Nullify" destinationEntity="ToDo" inverseName="focus" inverseEntity="ToDo"/>
+        <fetchIndex name="byGoalIndex">
+            <fetchIndexElement property="goal" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="ToDo" representedClassName=".ToDo" syncable="YES">
+        <attribute name="todo" optional="YES" attributeType="String"/>
+        <relationship name="focus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Focus" inverseName="todos" inverseEntity="Focus"/>
+    </entity>
+    <elements>
+        <element name="Focus" positionX="-615.91015625" positionY="-40.734375" width="128" height="88"/>
+        <element name="ToDo" positionX="-435.0625" positionY="-27.04296875" width="128" height="73"/>
+    </elements>
+</model>

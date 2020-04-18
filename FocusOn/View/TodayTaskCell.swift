@@ -10,9 +10,9 @@ import UIKit
 
 class TodayTaskCell: UITableViewCell {
   
-  @IBOutlet weak var countLabel: UIImageView!
-  @IBOutlet weak var checkMarkButton: UIButton!
-  @IBOutlet weak var taskTextField: UITextField!
+  @IBOutlet weak var todayTaskCountLabel: UIImageView!
+  @IBOutlet weak var todayTaskCheckMarkButton: UIButton!
+  @IBOutlet weak var todayTaskTextField: UITextField!
   
   
   override func awakeFromNib() {
