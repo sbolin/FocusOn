@@ -8,25 +8,70 @@
 
 import UIKit
 
-class TodayTaskCell: UITableViewCell {
+protocol NewTodayTaskCellDelegate {
+  func newTaskCell(_ cell: TodayTaskCell, newTaskCreated taskText: String)
+  func newTaskCell(_ cell: TodayTaskCell, completionChanged completion: Bool)
+}
+
+class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
   
+  //MARK: - Properties
+  var delegate: NewTodayTaskCellDelegate?
+  
+  // MARK: - IBOutlets
+  @IBOutlet weak var todayTaskTextField: UITextField!
   @IBOutlet weak var todayTaskCountLabel: UIImageView!
   @IBOutlet weak var todayTaskCheckMarkButton: UIButton!
-  @IBOutlet weak var todayTaskTextField: UITextField!
   
   
+  // MARK: - View Life Cycle
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    super.awakeFromNib()
+    todayTaskTextField.delegate = self
+  }
+  
+  // MARK: - Helper functions
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    processInput()
+    return true
+  }
+  
+  func fetchInput() -> String? {
+    if let textCapture = todayTaskTextField.text?.trimmingCharacters(in: .whitespaces) {
+      return textCapture.count > 0 ? textCapture : nil
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    return nil
+  }
+  
+  func processInput() {
+    if let textCapture = fetchInput() {
+      delegate?.newTaskCell(self, newTaskCreated: textCapture)
     }
-
-  @IBAction func checkmarkTapped(_ sender: UIButton) {
+    todayTaskTextField.text = ""
+    todayTaskTextField.resignFirstResponder()
+  }
+  
+  func markCompleted(_ completed: Bool) {
+      todayTaskCheckMarkButton.isSelected = completed
+  }
+  
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
+  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    super.setHighlighted(highlighted, animated: animated)
+  }
+  
+  // MARK: - IBActions
+  @IBAction func inputTextChanged(_ sender: Any) {
     
+  }
+  
+  
+  @IBAction func checkmarkTapped(_ sender: UIButton) {
+    markCompleted(!todayTaskCheckMarkButton.isSelected)
+    delegate?.newTaskCell(self, completionChanged: todayTaskCheckMarkButton.isSelected)
   }
 }

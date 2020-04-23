@@ -76,6 +76,9 @@
                                                     <rect key="frame" x="12" y="5" width="303" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="inputTextChanged:" destination="xvD-qM-Qfq" eventType="editingChanged" id="FwY-h5-V80"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvQ-t7-UAP">
                                                     <rect key="frame" x="323" y="8" width="44" height="44"/>
@@ -86,6 +89,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <state key="normal" image="LargeCheckMark"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3 tasks to achieve your goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-5j-SaZ">
+                                                    <rect key="frame" x="23" y="45" width="161.66666666666666" height="14.333333333333314"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Wcd-KL-d2j" secondAttribute="bottom" constant="5" id="WjJ-Bb-zfD"/>
@@ -98,7 +108,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="todayGoalCheckMarkButton" destination="CvQ-t7-UAP" id="vZV-J6-E1d"/>
-                                            <outlet property="todoGoalTextField" destination="Wcd-KL-d2j" id="o1p-h4-3Vr"/>
+                                            <outlet property="todayGoalTextField" destination="Wcd-KL-d2j" id="o1p-h4-3Vr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TodayTaskCell" rowHeight="48" id="84D-Kg-7Ai" customClass="TodayTaskCell" customModule="FocusOn" customModuleProvider="target">
@@ -120,6 +130,9 @@
                                                     <rect key="frame" x="48" y="5" width="275" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="inputTextChanged:" destination="84D-Kg-7Ai" eventType="editingChanged" id="lOn-VF-GUa"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKe-z3-y9N">
                                                     <rect key="frame" x="331" y="8" width="32" height="32"/>
@@ -153,20 +166,11 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 tasks to achieve your goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-5j-SaZ">
-                                <rect key="frame" x="16" y="388" width="161.66666666666666" height="14.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Wfu-0I-srA" secondAttribute="trailing" id="2RW-bv-ZAs"/>
                             <constraint firstItem="Wfu-0I-srA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7pX-Ov-JGz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fhw-5j-SaZ" secondAttribute="trailing" symbolic="YES" id="BGO-es-o39"/>
-                            <constraint firstItem="Fhw-5j-SaZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="IXl-mR-AwU"/>
-                            <constraint firstItem="Fhw-5j-SaZ" firstAttribute="top" secondItem="Wfu-0I-srA" secondAttribute="bottom" constant="8" id="Nkl-Bu-Wjg"/>
                             <constraint firstItem="qQt-ui-bbc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yrb-F8-yfS"/>
                             <constraint firstItem="Wfu-0I-srA" firstAttribute="top" secondItem="qQt-ui-bbc" secondAttribute="bottom" id="j0S-FH-AN2"/>
                             <constraint firstItem="qQt-ui-bbc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mTt-Kc-JdR"/>

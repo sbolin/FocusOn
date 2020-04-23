@@ -9,159 +9,169 @@
 import UIKit
 import CoreData
 
-
-class TodayViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class TodayViewController: UIViewController {
   
+  //MARK: - Properties
+  fileprivate let goalCell = "TodayGoalCell"
+  fileprivate let todoCell = "TodayTaskCell"
+  
+  //MARK: CoreDataStack
+  lazy var coreDataStack = CoreDataStack(modelName: "FocusOn")
+  lazy var fetchedResultsController: NSFetchedResultsController<Goal> = {
+    let fetchRequest: NSFetchRequest<Goal> = Goal.createFetchRequest()
+    
+    let dateSort = NSSortDescriptor(key: #keyPath(Goal.dateCreated), ascending: false)
+    
+    fetchRequest.sortDescriptors = [dateSort]
+    
+    let fetchedResultsController = NSFetchedResultsController(
+      fetchRequest: fetchRequest,
+      managedObjectContext: coreDataStack.managedContext,
+      sectionNameKeyPath: #keyPath(Goal.dateCreated),
+      cacheName: "focusOnCache")
+    
+    fetchedResultsController.delegate = self
+    
+    return fetchedResultsController
+  }()
+  
+  // MARK: DiffableData setup
+  var dataSource: UITableViewDiffableDataSource<Int, Goal>?
+  var diffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Int, Goal>()
+  
+  // MARK: - IBOutlets
   @IBOutlet weak var todayTableView: UITableView!
   @IBOutlet weak var addGoalButton: UIButton!
   @IBOutlet weak var addTaskButton: UIButton!
   
-  
-  // CoreData Parameters
-  var container = NSPersistentContainer(name: "FocusOn")
-  var todoPredicate: NSPredicate?
-  var todoFetchedResultsController: NSFetchedResultsController<ToDo>!
-  var focusFetchedResultsController: NSFetchedResultsController<Focus>!
-  
-  var goals = [Focus]()
-  
-  // Diffable Data Parameters
-//  var todoDiffableDataSource: UITableViewDiffableDataSource<Int, ToDo>?
-//  var todoDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Int, ToDo>()
-//
-//  var focusDiffableDataSource: UITableViewDiffableDataSource<Int, Focus>?
-//  var focusDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Int, Focus>()
-  
-  
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
     
-    setupCoreData()
-    setupFetchedResultsController()
- //   setupTableView()
-    
-//    performSelector(inBackground: #selector(fetchGoals), with: nil)
-    loadSavedData()
-
-    }
-  
-  //MARK: - Table View Setup Methods
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
-  }
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return goals.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "TodayGoalCell", for: indexPath)
-    
-    let goal = goals[indexPath.row]
-    cell.textLabel!.text = goal.goal
-    
-    return cell
-  }
-  
-  
-  
-// diffable data source methods
-//  private func setupTableView() {
-//    focusDiffableDataSource = UITableViewDiffableDataSource<Int, Focus>(tableView: todayTableView, cellProvider: { (todayTableView, indexPath, focus) -> UITableViewCell? in
-//
-//      let cell = todayTableView.dequeueReusableCell(withIdentifier: "TodayGoalCell", for: indexPath)
-//
-//      cell.textLabel?.text = focus.goal
-//      return cell
-//    })
-//
-//    updateSnapshot()
-//  }
-  
-//  private func updateSnapshot() {
-//    focusDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Int, Focus>()
-//    focusDiffableDataSourceSnapshot.appendSections([0])
-//    focusDiffableDataSourceSnapshot.appendItems(focusFetchedResultsController.fetchedObjects ?? [])
-//    focusDiffableDataSource?.apply(self.focusDiffableDataSourceSnapshot)
-//  }
-  
-  
-  
-  //MARK: - Core Data Methods
-  
-  // Setup the CoreData database
-  private func setupCoreData() {
-    container.loadPersistentStores { storeDescription, error in
-      self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-      if let error = error {
-        print("Unable to load data \(error.localizedDescription)")
-      }
-    }
-  }
-  
-  private func setupFetchedResultsController() {
+    dataSource = setupDataSource()
     
   }
   
-  // save CoreData to "disk"
-  func saveContext() {
-    if container.viewContext.hasChanges {
-      do {
-        try container.viewContext.save()
-      } catch {
-        print("An error occured while saving: \(error.localizedDescription)")
-      }
-    }
+  override func viewDidAppear(_ animated: Bool) {
+    
   }
   
-//  @objc func fetchGoals() {
-//
-//    self.saveContext()
-//    self.loadSavedData()
-//  }
+// MARK: - Navigation
   
-  func getNewestGoal() -> String {
-         let formatter = ISO8601DateFormatter()
-         
-         let newest = Focus.createFetchRequest()
-         let sort = NSSortDescriptor(key: "date", ascending: false)
-         newest.sortDescriptors = [sort]
-         newest.fetchLimit = 1
-         
-         if let goals = try? container.viewContext.fetch(newest) {
-             if goals.count > 0 {
-                 return formatter.string(from: goals[0].dateCreated.addingTimeInterval(1))
-             }
-         }
-         return formatter.string(from: Date(timeIntervalSince1970: 0))
-     }
-  
-  
-  
-  //MARK: - Helper Functions
-  func loadSavedData() {
-    if todoFetchedResultsController == nil {
-      let request = Focus.createFetchRequest()
-      let sort = NSSortDescriptor(key: "focus.dateCreated", ascending: true)
-      request.sortDescriptors = [sort]
-      focusFetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: "focus.dateCreated", cacheName: nil)
-      todoFetchedResultsController.delegate = self
-    }
-    todoFetchedResultsController.fetchRequest.predicate = todoPredicate
-    
-    do {
-      try todoFetchedResultsController.performFetch()
-      todayTableView.reloadData()
-    } catch {
-      print("Fetch failed")
-    }
-  }
-  
-    
+}
+//MARK: - IBActions
+extension TodayViewController {
   @IBAction func addGoalTapped(_ sender: UIButton) {
   }
   
   @IBAction func addTaskTapped(_ sender: UIButton) {
   }
+}
+
+// MARK: - UITableViewDiffableDataSource
+extension TodayViewController {
   
+  func setupDataSource() -> UITableViewDiffableDataSource<Int, Goal> {
+    return UITableViewDiffableDataSource(tableView: todayTableView) { (tableView, indexPath, goal) -> UITableViewCell? in
+      var cellID = ""
+      let section = indexPath.section
+      
+      if section == 0 {
+        cellID = self.goalCell
+      } else if section == 1 {
+        cellID = self.todoCell
+      }
+      let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+      self.configure(cell: cell, for: indexPath)
+      return cell
+    }
+  }
+  
+  func configure(cell: UITableViewCell, for indexPath: IndexPath) {
+    let section = indexPath.section
+    if section == 0 {
+      guard let cell = cell as? TodayGoalCell else { return }
+      let fetchedGoal = fetchedResultsController.object(at: indexPath)
+      cell.todayGoalTextField.text = fetchedGoal.goal
+      cell.todayGoalCheckMarkButton.isSelected = false
+    } else if section == 1 {
+      guard let cell = cell as? TodayTaskCell else { return }
+      let fetchedToDo = fetchedResultsController.object(at: indexPath)
+      cell.todayTaskTextField.text = fetchedToDo.todos.todo
+      //Entity object.relationship name.relationship Entity attribute
+      
+      cell.todayTaskCheckMarkButton.isSelected = false
+    }
+  }
+}
+
+// MARK: - UITableViewDelegate Methods
+extension TodayViewController: UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let section = indexPath.section
+    //TODO: Edit Tableview cell upon selection
+    
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let titleLabel = UILabel()
+    titleLabel.font.withSize(10)
+    titleLabel.backgroundColor = .lightGray
+    
+    if section == 0 {
+      titleLabel.text = "Goal for the day to Focus On"
+    } else if section == 1 {
+      titleLabel.text = "3 Tasks to achieve your goal"
+    }
+    
+    return titleLabel
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return 1
+    } else if section == 1 {
+      return 3
+    }
+    return 0
+  }
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 24
+    } else if section == 1 {
+      return 20
+    }
+    return 0
+  }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension TodayViewController: NSFetchedResultsControllerDelegate {
+  
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+    
+    var diff = NSDiffableDataSourceSnapshot<Int, Goal>()
+    snapshot.sectionIdentifiers.forEach { section in
+      
+      diff.appendSections([section as! Int])
+      
+      let items = snapshot.itemIdentifiersInSection(withIdentifier: section)
+        .map { (objectId: Any) -> Goal in
+          let oid = objectId as! NSManagedObjectID
+          return controller
+            .managedObjectContext
+            .object(with: oid) as! Goal
+      }
+      
+      diff.appendItems(items, toSection: section as? Int)
+    }
+    
+    dataSource?.apply(diff)
+  }
 }

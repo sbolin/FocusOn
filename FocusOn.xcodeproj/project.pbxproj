@@ -18,13 +18,14 @@
 		153A737A2449B06B00A2F22F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153A73792449B06B00A2F22F /* HistoryViewController.swift */; };
 		153A737C2449B08000A2F22F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153A737B2449B08000A2F22F /* ProgressViewController.swift */; };
 		15CE52A02449EF7800E72FDC /* TodayTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE529F2449EF7800E72FDC /* TodayTaskCell.swift */; };
-		15CE52A5244A1DE300E72FDC /* ToDo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52A1244A1DE300E72FDC /* ToDo+CoreDataClass.swift */; };
-		15CE52A6244A1DE300E72FDC /* ToDo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52A2244A1DE300E72FDC /* ToDo+CoreDataProperties.swift */; };
-		15CE52A7244A1DE300E72FDC /* Focus+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52A3244A1DE300E72FDC /* Focus+CoreDataClass.swift */; };
-		15CE52A8244A1DE300E72FDC /* Focus+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52A4244A1DE300E72FDC /* Focus+CoreDataProperties.swift */; };
 		15CE52AA244A24F500E72FDC /* HistoryGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52A9244A24F500E72FDC /* HistoryGoalCell.swift */; };
 		15CE52AC244A250D00E72FDC /* HistoryTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52AB244A250D00E72FDC /* HistoryTaskCell.swift */; };
 		15CE52B1244AA8C900E72FDC /* TodayGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE52B0244AA8C900E72FDC /* TodayGoalCell.swift */; };
+		15F489DA2450589A0012C415 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F489D62450589A0012C415 /* Goal+CoreDataClass.swift */; };
+		15F489DB2450589A0012C415 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F489D72450589A0012C415 /* Goal+CoreDataProperties.swift */; };
+		15F489DC2450589A0012C415 /* ToDo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F489D82450589A0012C415 /* ToDo+CoreDataClass.swift */; };
+		15F489DD2450589A0012C415 /* ToDo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F489D92450589A0012C415 /* ToDo+CoreDataProperties.swift */; };
+		15F489DF245062DD0012C415 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F489DE245062DD0012C415 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +54,14 @@
 		153A73792449B06B00A2F22F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		153A737B2449B08000A2F22F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		15CE529F2449EF7800E72FDC /* TodayTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTaskCell.swift; sourceTree = "<group>"; };
-		15CE52A1244A1DE300E72FDC /* ToDo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataClass.swift"; sourceTree = "<group>"; };
-		15CE52A2244A1DE300E72FDC /* ToDo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		15CE52A3244A1DE300E72FDC /* Focus+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Focus+CoreDataClass.swift"; sourceTree = "<group>"; };
-		15CE52A4244A1DE300E72FDC /* Focus+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Focus+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		15CE52A9244A24F500E72FDC /* HistoryGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGoalCell.swift; sourceTree = "<group>"; };
 		15CE52AB244A250D00E72FDC /* HistoryTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTaskCell.swift; sourceTree = "<group>"; };
 		15CE52B0244AA8C900E72FDC /* TodayGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalCell.swift; sourceTree = "<group>"; };
+		15F489D62450589A0012C415 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		15F489D72450589A0012C415 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		15F489D82450589A0012C415 /* ToDo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		15F489D92450589A0012C415 /* ToDo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		15F489DE245062DD0012C415 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +127,11 @@
 		153A73742449975600A2F22F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15CE52A1244A1DE300E72FDC /* ToDo+CoreDataClass.swift */,
-				15CE52A2244A1DE300E72FDC /* ToDo+CoreDataProperties.swift */,
-				15CE52A3244A1DE300E72FDC /* Focus+CoreDataClass.swift */,
-				15CE52A4244A1DE300E72FDC /* Focus+CoreDataProperties.swift */,
+				15F489D62450589A0012C415 /* Goal+CoreDataClass.swift */,
+				15F489D72450589A0012C415 /* Goal+CoreDataProperties.swift */,
+				15F489D82450589A0012C415 /* ToDo+CoreDataClass.swift */,
+				15F489D92450589A0012C415 /* ToDo+CoreDataProperties.swift */,
+				15F489DE245062DD0012C415 /* CoreDataStack.swift */,
 				153A7358244996FF00A2F22F /* FocusOn.xcdatamodeld */,
 			);
 			path = Model;
@@ -138,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				153A7355244996FF00A2F22F /* Main.storyboard */,
-				15CE529F2449EF7800E72FDC /* TodayTaskCell.swift */,
 				15CE52B0244AA8C900E72FDC /* TodayGoalCell.swift */,
+				15CE529F2449EF7800E72FDC /* TodayTaskCell.swift */,
 				15CE52A9244A24F500E72FDC /* HistoryGoalCell.swift */,
 				15CE52AB244A250D00E72FDC /* HistoryTaskCell.swift */,
 			);
@@ -257,18 +260,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15F489DF245062DD0012C415 /* CoreDataStack.swift in Sources */,
 				153A73782449B00C00A2F22F /* TodayViewController.swift in Sources */,
 				153A735A244996FF00A2F22F /* FocusOn.xcdatamodeld in Sources */,
+				15F489DB2450589A0012C415 /* Goal+CoreDataProperties.swift in Sources */,
+				15F489DD2450589A0012C415 /* ToDo+CoreDataProperties.swift in Sources */,
 				15CE52AC244A250D00E72FDC /* HistoryTaskCell.swift in Sources */,
-				15CE52A7244A1DE300E72FDC /* Focus+CoreDataClass.swift in Sources */,
 				153A737C2449B08000A2F22F /* ProgressViewController.swift in Sources */,
 				15CE52A02449EF7800E72FDC /* TodayTaskCell.swift in Sources */,
 				15CE52AA244A24F500E72FDC /* HistoryGoalCell.swift in Sources */,
 				153A737A2449B06B00A2F22F /* HistoryViewController.swift in Sources */,
+				15F489DC2450589A0012C415 /* ToDo+CoreDataClass.swift in Sources */,
+				15F489DA2450589A0012C415 /* Goal+CoreDataClass.swift in Sources */,
 				15CE52B1244AA8C900E72FDC /* TodayGoalCell.swift in Sources */,
-				15CE52A8244A1DE300E72FDC /* Focus+CoreDataProperties.swift in Sources */,
-				15CE52A5244A1DE300E72FDC /* ToDo+CoreDataClass.swift in Sources */,
-				15CE52A6244A1DE300E72FDC /* ToDo+CoreDataProperties.swift in Sources */,
 				153A7350244996FF00A2F22F /* AppDelegate.swift in Sources */,
 				153A7352244996FF00A2F22F /* SceneDelegate.swift in Sources */,
 			);

@@ -2,12 +2,13 @@
 //  ToDo+CoreDataProperties.swift
 //  FocusOn
 //
-//  Created by Scott Bolin on 4/18/20.
+//  Created by Scott Bolin on 4/22/20.
 //  Copyright © 2020 Scott Bolin. All rights reserved.
 //
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 
@@ -18,6 +19,6 @@ extension ToDo {
     }
 
     @NSManaged public var todo: String
-    @NSManaged public var focus: Focus
-
+    @NSManaged public var completedTodo: Bool
+    @NSManaged public var goal: Goal?
 }
