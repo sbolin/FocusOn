@@ -11,11 +11,12 @@
     </entity>
     <entity name="ToDo" representedClassName=".ToDo" syncable="YES">
         <attribute name="completedTodo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="todo" optional="YES" attributeType="String"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="todos" inverseEntity="Goal"/>
     </entity>
     <elements>
-        <element name="Goal" positionX="-615.91015625" positionY="-40.734375" width="128" height="103"/>
-        <element name="ToDo" positionX="-433.89453125" positionY="-25.765625" width="128" height="88"/>
+        <element name="Goal" positionX="-610.8984375" positionY="-17.171875" width="128" height="103"/>
+        <element name="ToDo" positionX="-427.14453125" positionY="-17.515625" width="128" height="103"/>
     </elements>
 </model>

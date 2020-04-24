@@ -12,5 +12,20 @@ import CoreData
 
 
 public class Goal: NSManagedObject {
-
+  
+  var latestToDo: ToDo? {
+    guard let todos = todos,
+      let startingToDo = todos.first
+      else {
+        return nil
+    }
+    return Array(todos).reduce(startingToDo) {
+      $0.dateCreated.compare($1.dateCreated) == .orderedAscending ? $0 : $1
+    }
+  }
+  
+  public override func awakeFromInsert() {
+    super.awakeFromInsert()
+    dateCreated = Date()
+  }
 }

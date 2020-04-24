@@ -9,14 +9,13 @@
 import UIKit
 
 protocol NewTodayGoalCellDelegate {
-  func newGoalCell(_ cell: TodayGoalCell, newGoalCreated goalText: String)
+  func newGoalCellText(_ cell: TodayGoalCell, newGoalCreated goalText: String)
 }
 
 class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
   
   // MARK: - Properties
   var delegate: NewTodayGoalCellDelegate?
-  
   
   // MARK: - IBOutlets
   @IBOutlet weak var todayGoalTextField: UITextField!
@@ -28,6 +27,9 @@ class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
     todayGoalTextField.delegate = self
   }
   
+  //TODO: - override func prepareForReuse() { }
+  
+
   //MARK: - Helper functions
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     processInput()
@@ -43,23 +45,14 @@ class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
   
   func processInput() {
     if let textCapture = fetchInput() {
-      delegate?.newGoalCell(self, newGoalCreated: textCapture)
+      delegate?.newGoalCellText(self, newGoalCreated: textCapture)
     }
     todayGoalTextField.text = ""
     todayGoalTextField.resignFirstResponder()
   }
   
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-    // Configure the view for the selected state
-  }
-  
-  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-    super.setHighlighted(highlighted, animated: animated)
-  }
-  
   // MARK: - IBActions
   @IBAction func inputTextChanged(_ sender: Any) {
-    
+    processInput()
   }
 }

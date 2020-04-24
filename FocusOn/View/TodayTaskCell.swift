@@ -9,8 +9,8 @@
 import UIKit
 
 protocol NewTodayTaskCellDelegate {
-  func newTaskCell(_ cell: TodayTaskCell, newTaskCreated taskText: String)
-  func newTaskCell(_ cell: TodayTaskCell, completionChanged completion: Bool)
+  func newTaskCellText(_ cell: TodayTaskCell, newTaskCreated taskText: String)
+  func newTaskCellCompletion(_ cell: TodayTaskCell, completionChanged completion: Bool)
 }
 
 class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
@@ -30,6 +30,8 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
     todayTaskTextField.delegate = self
   }
   
+  //TODO: - override func prepareForReuse() { }
+  
   // MARK: - Helper functions
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     processInput()
@@ -45,7 +47,7 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
   
   func processInput() {
     if let textCapture = fetchInput() {
-      delegate?.newTaskCell(self, newTaskCreated: textCapture)
+      delegate?.newTaskCellText(self, newTaskCreated: textCapture)
     }
     todayTaskTextField.text = ""
     todayTaskTextField.resignFirstResponder()
@@ -72,6 +74,6 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
   
   @IBAction func checkmarkTapped(_ sender: UIButton) {
     markCompleted(!todayTaskCheckMarkButton.isSelected)
-    delegate?.newTaskCell(self, completionChanged: todayTaskCheckMarkButton.isSelected)
+    delegate?.newTaskCellCompletion(self, completionChanged: todayTaskCheckMarkButton.isSelected)
   }
 }
