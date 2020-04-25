@@ -87,7 +87,6 @@
                                                         <constraint firstAttribute="width" constant="44" id="mnN-fZ-mR9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <state key="normal" image="LargeCheckMark"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3 tasks to achieve your goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-5j-SaZ">
                                                     <rect key="frame" x="23" y="45" width="161.66666666666666" height="14.333333333333314"/>
@@ -140,7 +139,6 @@
                                                         <constraint firstAttribute="height" constant="32" id="V43-uv-8xf"/>
                                                         <constraint firstAttribute="width" constant="32" id="qgk-5u-NRA"/>
                                                     </constraints>
-                                                    <state key="normal" image="SmallCheckMark"/>
                                                     <connections>
                                                         <action selector="checkmarkTapped:" destination="84D-Kg-7Ai" eventType="touchUpInside" id="Kcz-6y-qhC"/>
                                                     </connections>

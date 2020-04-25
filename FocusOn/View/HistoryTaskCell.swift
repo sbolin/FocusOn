@@ -10,18 +10,27 @@ import UIKit
 
 class HistoryTaskCell: UITableViewCell {
   
+  //MARK: - IBOutlets
   @IBOutlet weak var historyTaskCheckMarkButton: UIButton!
   @IBOutlet weak var historyTaskTextField: UITextField!
   
+  // MARK: - View Life Cycle
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    super.awakeFromNib()
+    configureCheckmark()
+  }
+  
+  //MARK: - Helper Functions
+  func configureCheckmark() {
+    historyTaskCheckMarkButton.setImage(nil, for: .normal)
+    historyTaskCheckMarkButton.setImage(UIImage.init(named: "SmallCheckMark"), for: .selected)
+  }
+  
+  func markCompleted(_ completed: Bool) {
+    historyTaskCheckMarkButton.isSelected = completed
+  }
+  
+  func setHistoryTaskText(_ textLabel: String) {
+    historyTaskTextField.text = textLabel
+  }
 }

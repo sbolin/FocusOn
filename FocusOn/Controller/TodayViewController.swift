@@ -204,8 +204,6 @@ extension TodayViewController: NewTodayGoalCellDelegate {
     self.coreDataStack.saveContext()
 
   }
-  
-  
 }
 
 // MARK: - NewTodayTaskCellDelegate: newTaskCreated, completionChanged Methods

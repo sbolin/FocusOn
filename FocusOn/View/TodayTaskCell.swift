@@ -27,12 +27,18 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
   // MARK: - View Life Cycle
   override func awakeFromNib() {
     super.awakeFromNib()
+    configureCheckmark()
     todayTaskTextField.delegate = self
   }
   
   //TODO: - override func prepareForReuse() { }
   
   // MARK: - Helper functions
+  func configureCheckmark() {
+    todayTaskCheckMarkButton.setImage(nil, for: .normal)
+    todayTaskCheckMarkButton.setImage(UIImage.init(named: "SmallCheckMark"), for: .selected)
+  }
+  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     processInput()
     return true
@@ -57,7 +63,7 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
       todayTaskCheckMarkButton.isSelected = completed
   }
   
-  
+  //TODO: - is setSelected and setHighlighted needed?
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
@@ -67,10 +73,9 @@ class TodayTaskCell: UITableViewCell, UITextFieldDelegate {
   }
   
   // MARK: - IBActions
-  @IBAction func inputTextChanged(_ sender: Any) {
-    
-  }
-  
+//  @IBAction func inputTextChanged(_ sender: Any) {
+//    processInput()
+//  }
   
   @IBAction func checkmarkTapped(_ sender: UIButton) {
     markCompleted(!todayTaskCheckMarkButton.isSelected)

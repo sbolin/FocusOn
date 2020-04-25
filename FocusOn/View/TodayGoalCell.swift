@@ -24,6 +24,7 @@ class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
 // MARK: - View Life Cycle
   override func awakeFromNib() {
     super.awakeFromNib()
+    configureCheckmark()
     todayGoalTextField.delegate = self
   }
   
@@ -31,6 +32,15 @@ class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
   
 
   //MARK: - Helper functions
+  func configureCheckmark() {
+    todayGoalCheckMarkButton.setImage(nil, for: .normal)
+    todayGoalCheckMarkButton.setImage(UIImage.init(named: "LargeCheckMark"), for: .selected)
+  }
+  
+  func markCompleted(_ completed: Bool) {
+    todayGoalCheckMarkButton.isSelected = completed
+  }
+  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     processInput()
     return true
@@ -52,7 +62,7 @@ class TodayGoalCell: UITableViewCell, UITextFieldDelegate {
   }
   
   // MARK: - IBActions
-  @IBAction func inputTextChanged(_ sender: Any) {
-    processInput()
-  }
+//  @IBAction func inputTextChanged(_ sender: Any) {
+//    processInput()
+//  }
 }
